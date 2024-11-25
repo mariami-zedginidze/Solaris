@@ -1,26 +1,46 @@
 # Solaris Library
 
-**Solaris** is a library containing cool web effects built using Three.js and GLSL shaders. The current effect available is the **Neptune Effect**, which includes a rotating Neptune planet and an animated atmosphere.
+**Solaris** is a library of 3D web effects, shaders, and animations designed for web developers. Built using **Three.js** and **GLSL shaders**, Solaris allows you to easily add stunning, interactive 3D visuals to your website.
+
+The library includes various effects, such as the **Neptune Effect**, which features a rotating Neptune planet and an animated atmosphere. More effects will be added over time, so you can quickly enhance your site with beautiful, performant animations.
 
 ## How to Use
 
-To add the Neptune effect to your project:
+To integrate an effect from **Solaris** into your project, follow these simple steps:
 
-1. Clone this repository or install it via npm (once it's published).
-2. Import the Neptune effect into your project:
-   ```javascript
-   import { Neptune } from "solaris";
-   ```
-3. Use the Neptune effect:
-   ```javascript
-   const neptuneEffect = new Neptune();
-   neptuneEffect.start();
-   ```
+### 1. Install the library
 
-## Installation
+You can install **Solaris** in one of two ways:
 
-Once published to npm, install it like this:
+#### Clone the repository:
+
+```bash
+git clone https://github.com/yourusername/solaris.git
+```
+
+#### Or install via npm (once it’s published):
 
 ```bash
 npm install solaris
 ```
+
+#### 2. Import the effect
+
+After installation, import the desired effect into your project:
+
+```javascript
+import { Neptune } from "solaris";
+```
+
+#### 3. Use the effect
+
+To use the Neptune Effect, instantiate it and start the animation:
+
+```javascript
+const neptuneEffect = new Neptune();
+neptuneEffect.start();
+```
+
+### License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
