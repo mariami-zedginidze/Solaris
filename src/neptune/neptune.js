@@ -1,32 +1,36 @@
 import * as THREE from 'three';
-
-// Import shaders
-import fragmentShader from './fragment.glsl';
-import vertexShader from './vertex.glsl';
+import neptuneVertexShader from './vertex.glsl';
+import neptuneFragmentShader from './fragment.glsl';
 
 export default class Neptune {
-    constructor(scene) {
+    constructor(scene, textureLoader) {
         this.scene = scene;
 
-        // Create material
-        const material = new THREE.ShaderMaterial({
-            vertexShader,
-            fragmentShader,
+        // Load Neptune texture
+        this.neptuneDayTexture = textureLoader.load('./neptune/neptune.jpg');
+        this.neptuneDayTexture.colorSpace = THREE.SRGBColorSpace;
+        this.neptuneDayTexture.anisotropy = 8;
+
+        // Create Neptune material
+        this.neptuneMaterial = new THREE.ShaderMaterial({
+            vertexShader: neptuneVertexShader,
+            fragmentShader: neptuneFragmentShader,
             uniforms: {
-                uTime: { value: 0.0 },
-                uTexture: { value: null }, // Replace with your Neptune texture
+                uDayTexture: { value: this.neptuneDayTexture },
+                uNightColor: { value: new THREE.Vector4(0.0, 0.0, 0.0, 0.9) },
+                uSunDirection: { value: new THREE.Vector3(0, 0, 1) },
+                uAtmosphereDayColor: { value: new THREE.Color('#3a0ca3') },
+                uAtmosphereTwilightColor: { value: new THREE.Color('#7209b7') },
             },
         });
 
-        // Create geometry
-        const geometry = new THREE.SphereGeometry(1, 64, 64);
-
-        // Create mesh
-        this.mesh = new THREE.Mesh(geometry, material);
-        this.scene.add(this.mesh);
+        // Create Neptune geometry and mesh
+        const neptuneGeometry = new THREE.SphereGeometry(2, 64, 64);
+        this.neptuneMesh = new THREE.Mesh(neptuneGeometry, this.neptuneMaterial);
+        this.scene.add(this.neptuneMesh);
     }
 
-    update(deltaTime) {
-        this.mesh.material.uniforms.uTime.value += deltaTime;
+    updateSunDirection(sunDirection) {
+        this.neptuneMaterial.uniforms.uSunDirection.value.copy(sunDirection);
     }
 }
