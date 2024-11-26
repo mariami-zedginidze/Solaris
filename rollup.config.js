@@ -1,20 +1,19 @@
-import { terser } from 'rollup-plugin-terser';  // For minifying the output
-import resolve from '@rollup/plugin-node-resolve';  // To resolve node modules
-import commonjs from '@rollup/plugin-commonjs';  // To handle commonjs modules
+import glsl from 'rollup-plugin-glsl';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 
 export default {
-    input: 'src/index.js',  // Entry point of your library
+    input: 'src/index.js',
     output: {
-        file: 'dist/solaris.min.js',  // Output file name
-        format: 'umd',  // Universal Module Definition (works in both browser and Node.js)
-        name: 'Solaris',  // Global variable name when included in a script tag
-        globals: {
-            'three': 'THREE',  // For external dependencies like Three.js
-        }
+        file: 'dist/solaris.min.js',
+        format: 'umd',
+        name: 'Solaria',  // or another name for your global variable
     },
     plugins: [
-        resolve(),  // Resolve external dependencies
-        commonjs(),  // Convert CommonJS modules to ES6
-        terser(),  // Minify the output
-    ]
+        resolve({
+            extensions: ['.js', '.mjs', '.json', '.glsl'] // Ensure GLSL files are resolved
+        }),
+        commonjs(),
+        glsl()  // This plugin handles GLSL files
+    ],
 };
