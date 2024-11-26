@@ -1,0 +1,20 @@
+{
+  "name": "solaris-neptune-effect",
+  "version": "1.0.0",
+  "description": "A Neptune planet shader effect with animated atmosphere.",
+  "main": "./neptune/neptune.js",
+  "files": [
+    "neptune/",
+    "neptune/fragment.glsl",
+    "neptune/vertex.glsl"
+  ],
+  "keywords": [
+    "three.js",
+    "shaders",
+    "neptune",
+    "3D-effects",
+    "glsl"
+  ],
+  "author": "Your Name",
+  "license": "MIT"
+}
