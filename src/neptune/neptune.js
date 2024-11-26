@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import neptuneVertexShader from './vertex.glsl';
 import neptuneFragmentShader from './fragment.glsl';
+const neptuneDayTexture = textureLoader.load('/textures/neptune/neptune.jpg');
 
 export default class Neptune {
     constructor(scene, textureLoader) {
