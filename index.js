@@ -1,15 +1,15 @@
 import ThreeDScene from './scene';
 
-// Simple options to control the sphere and camera
+// Set up options for the scene (sphere size, rotation speed, etc.)
 const options = {
-    sphereSize: 2,  // Larger sphere
+    sphereSize: 2,  // Bigger sphere
     rotationSpeed: 0.02,  // Faster rotation
-    cameraPosition: { z: 5 },  // Move camera a bit further back
+    cameraPosition: { z: 5 },  // Move the camera back a bit
 };
 
-// Get the container for the canvas
+// Find the element on the webpage where the canvas will go
 const container = document.getElementById('canvas-container');
 
-// Instantiate and start the 3D scene
+// Create and start the 3D scene with the container and options
 const scene = new ThreeDScene(container, options);
-scene.start();
+scene.start();  // Start the animation

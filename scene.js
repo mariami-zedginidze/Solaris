@@ -1,4 +1,6 @@
 import * as THREE from 'three';
+import vertexShader from './shaders/vertexShader.glsl';
+import fragmentShader from './shaders/fragmentShader.glsl';
 
 class ThreeDScene {
     constructor(container, options = {}) {
@@ -20,9 +22,17 @@ class ThreeDScene {
             container.appendChild(this.renderer.domElement);
         }
 
-        // Create a simple sphere
+        // Shader material
+        const material = new THREE.ShaderMaterial({
+            vertexShader,
+            fragmentShader,
+            uniforms: {
+                color: { value: new THREE.Color(0x00ff00) }  // Green color
+            }
+        });
+
+        // Create sphere with shader material
         const geometry = new THREE.SphereGeometry(this.options.sphereSize, 32, 32);
-        const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });  // Simple green color
         this.sphere = new THREE.Mesh(geometry, material);
         this.scene.add(this.sphere);
 
